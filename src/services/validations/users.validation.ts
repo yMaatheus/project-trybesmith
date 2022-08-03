@@ -5,7 +5,7 @@ export const validateCreate = (user: IUser): ValidationResult => {
   const schema = Joi.object({
     username: Joi.string().required(),
     classe: Joi.string().required(),
-    level: Joi.string().required(),
+    level: Joi.number().required(),
     password: Joi.string().required(),
   });
 
