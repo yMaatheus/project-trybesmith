@@ -1,19 +1,19 @@
 import { ErrorRequestHandler, Request, Response, NextFunction } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
-const errorHandler: ErrorRequestHandler = async (
-  err, 
-  _req: Request, 
-  res: Response, 
-  _next: NextFunction,
-) => {
+enum ErrorsCodes {
+  ValidationError = StatusCodes.BAD_REQUEST,
+  Unauthorized = StatusCodes.UNAUTHORIZED,
+}
+
+const error: ErrorRequestHandler = async (err, _r: Request, res: Response, _next: NextFunction) => {
   const { name, message } = err;
+
+  const code = ErrorsCodes[name];
+
+  if (!code) return res.status(500).json({ message });
   
-  if (name === 'ValidationError') {
-    return res.status(StatusCodes.BAD_REQUEST).json({ message });
-  }
-  
-  return res.status(500).json({ message });
+  return res.status(+code).json({ message });
 };
 
-export default errorHandler;
+export default error;
