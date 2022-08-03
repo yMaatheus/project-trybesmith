@@ -10,10 +10,10 @@ const errorHandler: ErrorRequestHandler = async (
   const { name, message } = err;
   
   if (name === 'ValidationError') {
-    res.status(StatusCodes.BAD_REQUEST).json({ message });
+    return res.status(StatusCodes.BAD_REQUEST).json({ message });
   }
   
-  res.status(500).json({ message });
+  return res.status(500).json({ message });
 };
 
 export default errorHandler;
