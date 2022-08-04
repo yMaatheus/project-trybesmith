@@ -1,15 +1,6 @@
-import Joi, { ValidationError, ValidationResult } from 'joi';
+import Joi, { ValidationResult } from 'joi';
 import IProduct from '../../interfaces/product.interface';
-import CustomError from '../../utils/customError.util';
-
-const joiCustomException = (error: ValidationError) => {
-  const { type, message } = error.details[0];
-
-  if (type === 'string.base' || type === 'string.min') {
-    return new CustomError('UnprocessableEntity', message);
-  }
-  return error;
-};
+import joiCustomExceptionUtil from '../../utils/joiCustomException.util';
 
 export const validateCreateProduct = (product: IProduct): ValidationResult => {
   const schema = Joi.object({
@@ -19,7 +10,7 @@ export const validateCreateProduct = (product: IProduct): ValidationResult => {
 
   const { error, value } = schema.validate(product);
 
-  if (error) throw joiCustomException(error);
+  if (error) throw joiCustomExceptionUtil(error);
 
   return value;
 };
