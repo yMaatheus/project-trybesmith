@@ -16,4 +16,15 @@ export const validateCreate = (user: IUser): ValidationResult => {
   return value;
 };
 
-export const a = 'hello world';
+export const validateUsernamePassword = (username: string, password: string): ValidationResult => {
+  const schema = Joi.object({
+    username: Joi.string().required(),
+    password: Joi.string().required(),
+  });
+
+  const { error, value } = schema.validate({ username, password });
+
+  if (error) throw error;
+
+  return value;
+};

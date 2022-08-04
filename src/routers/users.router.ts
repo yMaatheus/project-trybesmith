@@ -5,7 +5,10 @@ const router = express.Router();
 
 const usersController = new UsersController();
 
-router.route('/')
+router.route('/users')
   .post(usersController.create);
+
+router.route('/login')
+  .post(usersController.login);
 
 export default router;
