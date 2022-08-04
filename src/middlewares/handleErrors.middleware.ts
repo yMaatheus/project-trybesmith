@@ -1,10 +1,5 @@
 import { ErrorRequestHandler, Request, Response, NextFunction } from 'express';
-import { StatusCodes } from 'http-status-codes';
-
-enum ErrorsCodes {
-  ValidationError = StatusCodes.BAD_REQUEST,
-  Unauthorized = StatusCodes.UNAUTHORIZED,
-}
+import ErrorsCodes from '../enums/ErrorsCodes';
 
 const error: ErrorRequestHandler = async (err, _r: Request, res: Response, _next: NextFunction) => {
   const { name, message } = err;
