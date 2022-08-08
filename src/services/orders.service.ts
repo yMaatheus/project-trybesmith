@@ -2,6 +2,8 @@ import Order from '../models/order.model';
 import connection from '../models/connection';
 import IOrder from '../interfaces/order.interface';
 import IOrderData from '../interfaces/orderData.interface';
+import OrderResponse from '../interfaces/orderResponse.interface';
+import { validateProductsIds } from './validations/orders.validation';
 
 const parseToIOrder = (acc: IOrder[], { id, userId, productId }: IOrderData) => {
   const orderAcc = acc[id];
@@ -24,5 +26,15 @@ export default class OrderService {
       parseToIOrder(acc, orderData), []);
 
     return orders;
+  }
+
+  public async create(userId: number, productsIds: number[]): Promise<OrderResponse> {
+    validateProductsIds(productsIds);
+    const orderId = await this.model.create(userId);
+
+    await Promise.all(productsIds.map(async (productId) => 
+      this.model.updateProduct(orderId, productId)));
+
+    return { userId, productsIds };
   }
 }
