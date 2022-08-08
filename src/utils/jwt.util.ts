@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { verify, sign, SignOptions } from 'jsonwebtoken';
+import { verify, sign, SignOptions, JwtPayload } from 'jsonwebtoken';
 import IUser from '../interfaces/user.interface';
 import CustomError from './customError.util';
 
@@ -21,12 +21,12 @@ export const createToken = (user: IUser) => {
   return token;
 };
 
-export const verifyToken = (token: string) => {
+export const verifyToken = (token: string): JwtPayload => {
   try {
     const payload = verify(token, SECRET);
     
-    return payload;
+    return payload as JwtPayload;
   } catch (_err) {
-    throw new CustomError('Unauthorized', 'Expired or invalid token');
+    throw new CustomError('Unauthorized', 'Invalid token');
   }
 };
