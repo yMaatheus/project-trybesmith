@@ -19,7 +19,7 @@ app.use('/products', productsRouter);
 app.use(usersRouter);
 app.use('/orders', ordersRouter);
 
-app.use('/doc', swaggerUi.serve, swaggerUi.setup(doc));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(doc));
 
 app.use(handleErrors);
 
