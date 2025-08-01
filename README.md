@@ -1,8 +1,4 @@
-# Project Smith
-
-Projeto realizado no módulo de Back-end durante o curso de Desenvolvimento Web pela [Trybe](https://www.betrybe.com/).
-
-## 📱 Projeto
+# 📱 Projeto
 
 O projeto consiste em uma API REST para uma loja de itens medievais, desenvolvida usando a camada MSC (Models, Service e Controllers) e realizando as operações básicas que se pode fazer em um banco de dados: CRUD (Criação, Leitura, Atualização e Exclusão)
 
@@ -23,7 +19,7 @@ Para conseguir seguir este README e rodar o projeto você pode precisar dos segu
 Para ter acesso aos arquivos do projeto você pode clonar usando o seguinte comando:
 
 ```
-git clone git@github.com:yMaatheus/project-trybesmith.git
+git clone 
 ```
 
 ### 🔧 Instalação
